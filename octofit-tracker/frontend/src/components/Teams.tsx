@@ -18,7 +18,12 @@ export default function Teams() {
       {status === 'error' && <p role="alert" className="text-danger">Unable to load teams.</p>}
       {status === 'success' && teams.length === 0 && <p>No teams found.</p>}
       {status === 'success' && teams.length > 0 && (
-        <ul className="list-group">{teams.map((team, index) => <li className="list-group-item" key={index}>{team.name}{team.mascot ? ` - ${team.mascot}` : ''}</li>)}</ul>
+        <ul className="list-group">{teams.map((team, index) => (
+          <li className="list-group-item" key={index}>
+            {team.name}{team.mascot ? ` - ${team.mascot}` : ''}
+            {team.members.length > 0 && ` (Members: ${team.members.join(', ')})`}
+          </li>
+        ))}</ul>
       )}
     </CapabilityCard>
   );
